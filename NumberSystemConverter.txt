@@ -1,0 +1,81 @@
+package icons;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class Converter extends JFrame implements ActionListener {
+
+	     JLabel LB,LD,LO,LH; //Labels for Binary,Decimal,Octal,Hexadecimal
+	     JTextField TD,TB,TO,TH; //textfield in which binary,octal,decimal,hexadecimal will be printed
+	     JButton calculate,clear; //Button to get the output
+	     JPanel p;
+			
+		    public Converter(){
+			
+			//Initialization of declared object variable
+			LD = new JLabel("Decimal No: ");
+			LB = new JLabel("Binary No: ");
+		    LO = new JLabel("Octal No: ");
+			LH = new JLabel("Hexadecimal No: ");
+			
+			 TD = new JTextField(20);
+			 TB = new JTextField(20);
+			 TO = new JTextField(20);
+			 TH = new JTextField(20);
+			
+			calculate = new JButton("Calculate");
+			clear = new JButton("Clear");
+			
+		    p = new JPanel();
+			p.setLayout(new GridLayout(5,2));
+			p.add(LD);
+			p.add(TD);
+			p.add(LB);
+			p.add(TB);
+			p.add(LO);
+			p.add(TO);
+			p.add(LH);
+			p.add(TH);
+			p.add(calculate);
+			p.add(clear);
+
+			setLayout(new FlowLayout());
+			add(p);
+			setTitle("Binary Conversion");
+			setSize(500,500);
+			setVisible(true);
+			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			
+			calculate.addActionListener(this);
+			clear.addActionListener(this);
+			
+		}
+		    
+		    
+		public void actionPerformed(ActionEvent ae)
+		//we have to define operations to perform some actions
+		{
+			JButton btn = (JButton)ae.getSource(); //to know which button is clicked
+			if(btn == calculate)
+			{
+				// This code will change the given decimal into Binary, Octal, Hexadecimal
+				int n = Integer.parseInt(TD.getText());
+				TB.setText(Integer.toBinaryString(n));
+				TO.setText(Integer.toOctalString(n));
+				TH.setText(Integer.toHexString(n));
+			}
+			if(btn == clear) // it will clear all text box
+			{
+				TD.setText("");
+				TB.setText("");
+				TO.setText("");
+				TH.setText("");
+			}
+		}
+		public static void main(String[] args) {
+			
+			new Converter(); // we don't need to create object
+		}
+}
+
